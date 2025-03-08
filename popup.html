@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenAI Assistants List</title>
+    <style>
+      body {
+        width: 400px;
+        padding: 15px;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .status {
+        padding: 5px;
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .active {
+        background-color: #e6ffe6;
+        color: #006600;
+      }
+      .inactive {
+        background-color: #ffe6e6;
+        color: #660000;
+      }
+      .config-section,
+      .response-section {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .form-group {
+        margin-bottom: 10px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+      .form-group select {
+        background-color: white;
+      }
+      .button {
+        background-color: #4caf50;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 14px;
+      }
+      .button:hover {
+        background-color: #45a049;
+      }
+      .button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+      .assistant-info {
+        font-size: 0.9em;
+        margin-top: 5px;
+        color: #666;
+      }
+      #assistantSelect {
+        display: none;
+      }
+      #assistantSelect.visible {
+        display: block;
+      }
+      .response-box {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 5px;
+        max-height: 200px;
+        overflow-y: auto;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+      .context-box {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #666;
+      }
+      .timestamp {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>OpenAI Assistants List</h2>
+
+      <div class="config-section">
+        <div class="form-group">
+          <label for="apiKey">OpenAI API Key:</label>
+          <input type="text" id="apiKey" placeholder="sk-..." />
+          <button id="saveApiKey" class="button" style="margin-top: 10px">
+            Save API Key
+          </button>
+        </div>
+
+        <div
+          id="assistantSelectContainer"
+          class="form-group"
+          style="margin-top: 15px"
+        >
+          <label for="assistantSelect">Available Assistants:</label>
+          <select id="assistantSelect">
+            <option value="">Loading assistants...</option>
+          </select>
+          <div id="assistantInfo" class="assistant-info"></div>
+        </div>
+      </div>
+
+      <div id="status" class="status inactive">Enter your API key to start</div>
+
+      <div class="response-section">
+        <h3>Latest Response</h3>
+        <div id="responseBox" class="response-box">
+          Select an assistant to view the latest response
+        </div>
+        <div id="contextBox" class="context-box"></div>
+        <div id="timestamp" class="timestamp"></div>
+        <button
+          id="refreshResponse"
+          class="button"
+          style="margin-top: 10px"
+          disabled
+        >
+          Refresh Response
+        </button>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

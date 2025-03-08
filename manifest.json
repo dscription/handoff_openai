@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "OpenAI Assistant Response Processor",
+  "version": "1.0",
+  "description": "Captures and processes OpenAI assistant responses",
+  "permissions": ["activeTab", "scripting", "storage", "alarms"],
+  "host_permissions": ["https://chat.openai.com/*", "https://api.openai.com/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
